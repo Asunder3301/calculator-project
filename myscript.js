@@ -1,26 +1,17 @@
 let firstNumber = '';
 secondNumber = '';
-mathSign = '';
+operator = '';
 
-function add (a,b) {
+function add (a, b) {
     return a + b;
-    firstNumber = a;
-    secondNumber = b;
-    mathSign = '-'
 }
 
 function subtract (a, b) {
     return a - b;
-    firstNumber = a;
-    secondNumber = b;
-    mathSign = '-'
 }
 
 function multiply (a, b) {
     return a * b;
-    firstNumber = a;
-    secondNumber = b;
-    mathSign = 'x';
 }
 
 function divide (a, b) {
@@ -29,22 +20,32 @@ function divide (a, b) {
     } else {
         return a / b;
     }
-    firstNumber = a;
-    secondNumber = b
-    mathSign = '/'
 }
 
-function operate (operator, num1, num2) {
+function operate (firstNumber, operator, secondNumber) {
     if (operator === '+') {
-        return add(num1, num2);
+        return add(firstNumber, secondNumber);
     } else if (operator === '-') {
-        return subtract(num1, num1);
+        return subtract(firstNumber, secondNumber);
     } else if (operator === '*') {
-        return multiply(num1, num2);
+        return multiply(firstNumber, secondNumber);
     } else if (operator === '/') {
-        return divide(num1, num2);
+        return divide(firstNumber, secondNumber);
     } else {
         return alert('INVALID OPERATOR');
     }
 
 }
+
+const display = document.querySelector('.display');
+const digits = document.querySelector('.numBtn');
+const operators = document.querySelector('.operBtn');
+
+function addToDisplay (c) {
+    if (display.textContent =='0') {
+        display.textContent = c;
+    } else {
+        display.textContent += c;
+    }
+}
+
