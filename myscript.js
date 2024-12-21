@@ -37,15 +37,63 @@ function operate (firstNumber, operator, secondNumber) {
 
 }
 
-const display = document.querySelector('.display');
-const digits = document.querySelector('.numBtn');
-const operators = document.querySelector('.operBtn');
+const display = document.querySelector('.display')
 
 function addToDisplay (c) {
-    if (display.textContent =='0') {
+    if (display.textContent == '0') {
         display.textContent = c;
     } else {
         display.textContent += c;
     }
 }
 
+// function evaluateExp() {
+//     let trimmed = display.textContent.trim();
+//     let exp = trimmed.split(' ').filter(e => e);
+//     console.log("yes");
+//     while(exp.length > 1){
+//         for(let i = 1; i < exp.length; i += 2){
+//             if(exp[i] == '/' || exp[i] == '*'){
+//                 let result = operate(parseFloat(exp[i - 1]), exp[i], parseFloat(exp[i + 1]));
+//                 exp.splice(i - 1, 3, result);
+//                 i -= 2;
+//             }
+//         }
+        
+//         for(let i=1; i < exp.length; i += 2){
+//             if(exp[i] == '+' || exp[i] == '-'){
+//                 let result = operate(parseFloat(exp[i- 1]), exp[i], parseFloat(exp[i + 1]));
+//                 exp.splice(i-1, 3, result);
+//                 i -= 2;
+//             }
+//         }
+        
+//     }
+
+//     display.textContent = exp[0];
+// }
+
+function evaluateExp(){
+    let S = display.textContent.trim();
+    let exp = S.split(' ').filter(e=>e);
+    console.log("yes");
+    while(exp.length>1){
+        for(let i=1; i<exp.length; i+=2){
+            if(exp[i]=='/' || exp[i]=='*'){
+                let result = operate(parseFloat(exp[i-1]),exp[i], parseFloat(exp[i+1]));
+                exp.splice(i-1,3,result);
+                i-=2;
+            }
+        }
+        
+        for(let i=1; i<exp.length; i+=2){
+            if(exp[i]=='+' || exp[i]=='-'){
+                let result = operate(parseFloat(exp[i-1]),exp[i], parseFloat(exp[i+1]));
+                exp.splice(i-1,3,result);
+                i-=2;
+            }
+        }
+        
+    }
+    display.textContent=exp[0];
+}
